@@ -1,3 +1,4 @@
+uvicorn
 
 fastapi
 joblib
@@ -8,4 +9,4 @@ scikit-learn
 scipy
 setuptools
 sklearn
-uvicorn
+
