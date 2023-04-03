@@ -8,11 +8,12 @@ pipeline {
 	        }
 	   }
 	   stage('Build') {
-	        steps {
-	        bat 'pip install -r requirements.txt'
-		bat 'python -m uvicorn app:app --reload'
-	        }
-	   }
+    steps {
+        bat 'pip install -r requirements.txt'
+        bat 'pip install uvicorn'
+        bat 'python -m uvicorn app:app --reload'
+    }
+}
            
 		    
 	   
