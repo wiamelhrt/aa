@@ -9,11 +9,10 @@ pipeline {
 	   }
 	   stage('Build') {
 	        steps {
-	        withPythonEnv('venv') {
-                    bat 'python -m uvicorn app:app --reload'
-                }
+	        bat 'pip install -r requirements.txt'
 	        }
 	   }
+		    
 	   
 	   
     }
