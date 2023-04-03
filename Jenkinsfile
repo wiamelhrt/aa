@@ -7,13 +7,22 @@ pipeline {
 	        checkout scm
 	        }
 	   }
-	   stage('Build') {
+	   stage('Deploy') {
     steps {
         bat 'pip install -r requirements.txt'
         bat 'pip install uvicorn'
-        bat 'python -m uvicorn app:app --reload'
+        bat 'python -m uvicorn app:app --reload &'
     }
 }
+   stage('Stop Uvicorn') {
+            when {
+                buildingTag()
+            }
+            steps {
+                echo 'Stopping Uvicorn'
+                bat 'pkill uvicorn'
+            }
+        }
            
 		    
 	   
