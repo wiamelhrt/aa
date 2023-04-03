@@ -10,13 +10,10 @@ pipeline {
 	   stage('Build') {
 	        steps {
 	        bat 'pip install -r requirements.txt'
+		bat 'python -m uvicorn app:app --reload'
 	        }
 	   }
-           stage('deploy') {
-	        steps {
-	        bat 'python -m uvicorn app:app --reload'
-	        }
-	   }
+           
 		    
 	   
 	   
