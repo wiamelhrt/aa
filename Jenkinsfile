@@ -10,7 +10,7 @@ pipeline {
             steps {
                 bat 'pip install -r requirements.txt'
                 bat 'pip install uvicorn'
-                bat 'start cmd /c "timeout /t 40 && python -m uvicorn app:app --reload"'
+                bat 'start cmd /c "timeout /t 170 && python -m uvicorn app:app --reload"'
             }
         }
         stage('Stop Uvicorn') {
