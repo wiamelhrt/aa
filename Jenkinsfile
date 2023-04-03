@@ -10,7 +10,7 @@ pipeline {
             steps {
                 bat 'pip install -r requirements.txt'
                 bat 'pip install uvicorn'
-                bat 'start cmd /c "timeout /t 170 && python -m uvicorn app:app --reload"'
+                bat 'start cmd /c "python -m uvicorn app:app --reload & echo %PROCESS_ID% > pid.txt"'
             }
         }
         stage('Stop Uvicorn') {
@@ -18,7 +18,7 @@ pipeline {
                 buildingTag()
             }
             steps {
-                bat 'pkill uvicorn'
+                bat 'set /p pid=<pid.txt && timeout /t 60 && taskkill /f /pid %pid%'
             }
         }
     }
